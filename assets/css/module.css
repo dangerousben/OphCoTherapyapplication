@@ -23,7 +23,7 @@
 }
 /* line 19, ../sass/components/_event.scss */
 .event .event-content {
-  background-image: url('../img/watermark.png?1387445457');
+  background-image: url('../img/watermark.png?1391005465');
 }
 /* line 22, ../sass/components/_event.scss */
 .event .event-title {
@@ -39,17 +39,17 @@
   background: rgba(255, 255, 255, 0.6);
   position: relative;
 }
-/* line 20, ../sass/components/_panels.scss */
+/* line 21, ../sass/components/_panels.scss */
 .panel.previous-interventions:last-child {
   margin: 0;
 }
-/* line 23, ../sass/components/_panels.scss */
+/* line 24, ../sass/components/_panels.scss */
 .edit .panel.previous-interventions, .edit .panel.previous-interventions:last-child {
-  margin-bottom: .5em;
+  margin-bottom: 8px;
 }
 /* line 27, ../sass/components/_panels.scss */
 .panel.previous-interventions .field-row, .panel.previous-interventions .data-row {
-  padding-bottom: .4em;
+  padding-bottom: 6px;
 }
 
 /* line 17, ../sass/components/_nice-compliance.scss */

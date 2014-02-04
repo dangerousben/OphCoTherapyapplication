@@ -17,15 +17,15 @@
 .panel {
 	&.previous-interventions {
 		background: rgba(255, 255, 255, 0.6);
+		position: relative;
 		&:last-child {
 			margin: 0;
 		}
 		.edit &, .edit &:last-child {
-			margin-bottom: .5em;
+			margin-bottom: 8px;
 		}
-		position: relative;
 		.field-row, .data-row {
-			padding-bottom: .4em;
+			padding-bottom: 6px;
 		}
 	}
 }
