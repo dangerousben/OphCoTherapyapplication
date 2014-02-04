@@ -190,23 +190,26 @@ Please provide further information below relating to the clinical urgency and / 
 							<th>Name of Doctor:</th>
 							<td><?php echo $diagnosis->user->getReportDisplay() ?></td>
 						</tr>
-						<tr>
+						<tr class="last">
 							<th>Designation</th>
 							<td><?php echo $diagnosis->user->role ?></td>
 						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr nobr="true">
+			<td class="row-title">Any queries</td>
+			<td class="row-data">
+				<table class="inner">
+					<tbody>
 						<tr>
-							<th>Telephone No.</th>
-							<td>
-								<?php if ($contact = $diagnosis->user->contact) {
-									echo $contact->primary_phone;
-								} else {
-									echo "Unavailable";
-								}?>
-							</td>
+							<th>Tel No (Contract Dept)</th>
+							<td><?php echo Yii::app()->params['OphCoTherapyapplication_query_tel'] ?></td>
 						</tr>
 						<tr class="last">
 							<th>Email</th>
-							<td><?php echo Yii::app()->params['OphCoTherapyapplication_applicant_email'] ?></td>
+							<td><?php echo Yii::app()->params['OphCoTherapyapplication_query_email'] ?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -271,14 +274,6 @@ Please provide further information below relating to the clinical urgency and / 
 						<tr nobr="true">
 							<th>Chief Pharmacist / Deputy Name</th>
 							<td><?php echo preg_replace('/\n/', '<br />', Yii::app()->params['OphCoTherapyapplication_chief_pharmacist']) ?></td>
-						</tr>
-						<tr nobr="true">
-							<th>Chief Pharmacist / Deputy email &amp; contact number:</th>
-							<td><?php echo preg_replace('/\n/', '<br />', Yii::app()->params['OphCoTherapyapplication_chief_pharmacist_contact']) ?></td>
-						</tr>
-						<tr nobr="true">
-							<th>Pharmacist name for any queries if different to above</th>
-							<td><?php echo preg_replace('/\n/', '<br />', Yii::app()->params['OphCoTherapyapplication_chief_pharmacist_alternate']) ?></td>
 						</tr>
 						<tr nobr="true" class="last">
 							<th>Pharmacist email and contact number:</th>
