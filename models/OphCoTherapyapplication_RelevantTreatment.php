@@ -28,7 +28,7 @@
  *
  **/
 
-class OphCoTherapyapplication_RelevantTreatment extends BaseActiveRecordVersionedSoftDelete
+class OphCoTherapyapplication_RelevantTreatment extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -68,4 +68,10 @@ class OphCoTherapyapplication_RelevantTreatment extends BaseActiveRecordVersione
 		);
 	}
 
+	public function behaviors()
+	{
+		return array(
+			'LookupTable' => 'LookupTable',
+		);
+	}
 }

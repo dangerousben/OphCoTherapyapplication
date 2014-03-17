@@ -18,7 +18,7 @@
  */
 ?>
 <?php echo $form->dropdownlist($model, 'drug_id', CHtml::listData($model->getTreatmentDrugs(), 'id', 'name'), array('empty' => '- Please select -', 'class' => 'clearfix'))?>
-<?php echo $form->dropdownlist($model, 'decisiontree_id', CHtml::listData(OphCoTherapyapplication_DecisionTree::model()->notDeletedOrPk($model->decisiontree_id)->findAll(),'id','name'),array('empty'=>'- Please select -'))?>
+<?php echo $form->dropdownlist($model, 'decisiontree_id', 'OphCoTherapyapplication_DecisionTree',array('empty'=>'- Please select -'))?>
 <?php echo $form->radioBoolean($model, 'contraindications_required', array(1 => 'Yes', 0 => 'No'), array('field' => 9))?>
 <?php echo $form->textField($model, 'template_code', array(), array(), array('field' => 5))?>
 <div class="row field-row">
@@ -46,7 +46,7 @@
 		<label for="<?php echo get_class($model).'_cost_type_id';?>">per</label>
 	</div>
 	<div class="large-2 column end">
-		<?php echo $form->dropDownList($model, 'cost_type_id', CHtml::listData(OphCoTherapyapplication_Treatment_CostType::model()->notDeletedOrPk($model->cost_type_id)->findAll(), 'id', 'name'), array('nowrapper' => true))?>
+		<?php echo $form->dropDownList($model, 'cost_type_id', 'OphCoTherapyapplication_Treatment_CostType', array('nowrapper' => true))?>
 	</div>
 </div>
 

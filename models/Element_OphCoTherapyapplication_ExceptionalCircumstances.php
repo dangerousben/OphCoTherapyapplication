@@ -382,33 +382,7 @@ class Element_OphCoTherapyapplication_ExceptionalCircumstances extends SplitEven
 	 */
 	public function getStandardInterventionsForSide($side)
 	{
-		$criteria = new CDbCriteria;
-		$criteria->condition = 'enabled = true';
-		$criteria->order = 'display_order asc';
-
-		$in_use_intervention_ids = array();
-		foreach ($this->{$side . "_standard_intervention_id"} as $intervention) {
-			$in_use_intervention_ids[] = $intervention->id;
-		}
-
-		$sis = OphCoTherapyapplication_ExceptionalCircumstances_StandardIntervention::model()->notDeletedOrPk($in_use_intervention_ids)->findAll($criteria);
-
-		if ($curr_id = $this->{$side . "_standard_intervention_id"}) {
-			$seen = false;
-			$all_sis = array();
-			foreach ($sis as $s) {
-				if ($s->id == $curr_id) {
-					$seen = true;
-					break;
-				}
-				$all_sis[] = $s;
-			}
-			if (!$seen) {
-				$all_sis[] = $this->{$side . '_standard_intervention'};
-				$sis = $all_sis;
-			}
-		}
-		return $sis;
+		return OphCoTherapyapplication_ExceptionalCircumstances_StandardIntervention::model()->activeOrPk($this->{$side . "_standard_intervention_id"})->findAll();
 	}
 
 	/**
@@ -434,32 +408,12 @@ class Element_OphCoTherapyapplication_ExceptionalCircumstances extends SplitEven
 	 */
 	public function getDeviationReasonsForSide($side)
 	{
-		$criteria = new CDbCriteria;
-		$criteria->condition = 'enabled = true';
-		$criteria->order = 'display_order asc';
-
 		$in_use_reason_ids = array();
 		foreach ($this->{$side . '_deviationreasons'} as $curr) {
 			$in_use_reason_ids[] = $curr->id;
 		}
 
-		$reasons = OphCoTherapyapplication_ExceptionalCircumstances_DeviationReason::model()->activeOrPk($in_use_reason_ids)->findAll($criteria);
-
-		$all_risks = array();
-		$r_ids = array();
-
-		foreach ($reasons as $reason) {
-			$all_reasons[] = $reason;
-			$r_ids[] = $reason->id;
-		}
-
-		foreach ($this->{$side . '_deviationreasons'} as $curr) {
-			if (!in_array($curr->id, $r_ids)) {
-				$all_reasons[] = $curr;
-			}
-		}
-
-		return $all_reasons;
+		return OphCoTherapyapplication_ExceptionalCircumstances_DeviationReason::model()->activeOrPk($in_use_reason_ids)->findAll();
 	}
 
 	/**
@@ -469,33 +423,7 @@ class Element_OphCoTherapyapplication_ExceptionalCircumstances extends SplitEven
 	 */
 	public function getStartPeriodsForSide($side)
 	{
-		$criteria = new CDbCriteria;
-		$criteria->condition = 'enabled = true';
-		$criteria->order = 'display_order asc';
-
-		$in_use_start_period_ids = array();
-		foreach ($this->{$side . "_start_period_id"} as $start_period) {
-			$in_use_start_period_ids[] = $start_period->id;
-		}
-
-		$sps = OphCoTherapyapplication_ExceptionalCircumstances_StartPeriod::model()->notDeletedOrPk($in_use_start_period_ids)->findAll($criteria);
-
-		if ($curr_id = $this->{$side . "_start_period_id"}) {
-			$seen = false;
-			$all_sps = array();
-			foreach ($sps as $s) {
-				if ($s->id == $curr_id) {
-					$seen = true;
-					break;
-				}
-				$all_sps[] = $s;
-			}
-			if (!$seen) {
-				$all_sps[] = $this->{$side . '_start_period'};
-				$sps = $all_sps;
-			}
-		}
-		return $sps;
+		return OphCoTherapyapplication_ExceptionalCircumstances_StartPeriod::model()->activeOrPk($this->{$side . "_start_period_id"})->findAll();
 	}
 
 	/**

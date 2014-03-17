@@ -185,7 +185,7 @@ class AdminController extends ModuleAdminController
 
 		$this->render('list_OphCoTherapyapplication_Treatment', array(
 				'model_class' => 'OphCoTherapyapplication_Treatment',
-				'model_list' => OphCoTherapyapplication_Treatment::model()->notDeleted()->findAll(array('order'=>'display_order asc')),
+				'model_list' => OphCoTherapyapplication_Treatment::model()->findAll(),
 				'title' => 'Treatments',
 		));
 	}
@@ -430,7 +430,7 @@ class AdminController extends ModuleAdminController
 
 		$this->render('list_OphCoTherapyapplication_FileCollection', array(
 				'model_class' => 'OphCoTherapyapplication_FileCollection',
-				'model_list' => OphCoTherapyapplication_FileCollection::model()->notDeleted()->findAll(),
+				'model_list' => OphCoTherapyapplication_FileCollection::model()->findAll(),
 				'title' => 'File Collections',
 		));
 	}

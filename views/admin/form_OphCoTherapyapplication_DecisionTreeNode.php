@@ -28,7 +28,7 @@ $form->layoutColumns = array(
 
 <?php echo $form->errorSummary($model); ?>
 <?php echo $form->textField($model,'question',array('maxlength'=>256)); ?>
-<?php echo $form->dropdownlist($model,'outcome_id',CHtml::listData(OphCoTherapyapplication_DecisionTreeOutcome::model()->notDeletedOrPk($model->outcome_id)->findAll(),'id','name'),array('empty'=>'- Please select -')); ?>
+<?php echo $form->dropdownlist($model,'outcome_id','OphCoTherapyapplication_DecisionTreeOutcome',array('empty'=>'- Please select -')); ?>
 
 <?php
 $func_list = array();
@@ -67,11 +67,11 @@ $html_options = array(
 		'options' => array(),
 		'empty'=>'- Please select -',
 );
-foreach (OphCoTherapyapplication_DecisionTreeNode_ResponseType::model()->notDeletedOrPk($model->response_type_id)->findAll() as $rt) {
+foreach (OphCoTherapyapplication_DecisionTreeNode_ResponseType::model()->findAll() as $rt) {
 	$html_options['options'][(string) $rt->id] = array('data-datatype' => $rt->datatype);
 }
 
-echo $form->dropdownlist($model,'response_type_id',CHtml::listData(OphCoTherapyapplication_DecisionTreeNode_ResponseType::model()->notDeletedOrPk($model->response_type_id)->findAll(),'id','label'),$html_options); ?>
+echo $form->dropdownlist($model,'response_type_id',CHtml::listData(OphCoTherapyapplication_DecisionTreeNode_ResponseType::model()->findAll(),'id','label'),$html_options); ?>
 <script id="template_default_value_default" type="text/html">
 	<?php
 		$this->renderPartial('template_OphCoTherapyapplication_DecisionTreeNode_default_value_default',

@@ -202,7 +202,7 @@ if (@$_POST[$element_name] && @$_POST[$element_name][$side . $inttype_name] &&
 		<div class="large-6 column">
 			<?php
 
-			$reasons = OphCoTherapyapplication_ExceptionalCircumstances_PastIntervention_StopReason::model()->notDeletedOrPk($pastintervention->stopreason_id)->findAll();
+			$reasons = OphCoTherapyapplication_ExceptionalCircumstances_PastIntervention_StopReason::model()->findAll();
 			$html_options = array(
 					'class' => 'stop-reasons',
 					'empty' => '- Please select -',

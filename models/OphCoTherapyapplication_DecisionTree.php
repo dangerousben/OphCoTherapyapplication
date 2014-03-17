@@ -27,7 +27,7 @@
  *
  **/
 
-class OphCoTherapyapplication_DecisionTree extends BaseActiveRecordVersionedSoftDelete
+class OphCoTherapyapplication_DecisionTree extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.

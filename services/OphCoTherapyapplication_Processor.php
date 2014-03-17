@@ -111,7 +111,7 @@ class OphCoTherapyapplication_Processor
 			error_log('Therapy application requires OphCIExamination module');
 		}
 		if ($api = Yii::app()->moduleAPI->get('OphTrConsent')) {
-			$procedure = Procedure::model()->notDeleted()->find(array('condition' => 'snomed_code = :snomed', 'params' => array(':snomed' => $this::SNOMED_INTRAVITREAL_INJECTION)));
+			$procedure = Procedure::model()->find(array('condition' => 'snomed_code = :snomed', 'params' => array(':snomed' => $this::SNOMED_INTRAVITREAL_INJECTION)));
 			foreach ($sides as $side) {
 				if (!$api->hasConsentForProcedure($this->event->episode, $procedure, $side)) {
 					$warnings[] = 'Consent form is required for ' . $side . ' eye.';

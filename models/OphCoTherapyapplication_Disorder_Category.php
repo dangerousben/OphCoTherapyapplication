@@ -22,7 +22,7 @@
  * has been made for a given eye
  */
 
-class OphCoTherapyapplication_Disorder_Category extends BaseActiveRecordVersionedSoftDelete
+class OphCoTherapyapplication_Disorder_Category extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.

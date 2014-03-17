@@ -210,10 +210,10 @@ class OphCoTherapyapplication_ExceptionalCircumstances_PastIntervention extends 
 	 */
 	public function getTreatmentOptions($selected_id) {
 		if ($this->is_relevant) {
-			return OphCoTherapyapplication_RelevantTreatment::model()->notDeletedOrPk($selected_id)->findAll();
+			return OphCoTherapyapplication_RelevantTreatment::model()->activeOrPk($selected_id)->findAll();
 		}
 		else {
-			return OphCoTherapyapplication_Treatment::model()->notDeletedOrPk($selected_id)->findAll();
+			return OphCoTherapyapplication_Treatment::model()->availableOrPk($selected_id)->findAll();
 		}
 	}
 

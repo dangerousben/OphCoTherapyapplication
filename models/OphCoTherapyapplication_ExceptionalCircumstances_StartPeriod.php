@@ -17,7 +17,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 
-class OphCoTherapyapplication_ExceptionalCircumstances_StartPeriod extends BaseActiveRecordVersionedSoftDelete
+class OphCoTherapyapplication_ExceptionalCircumstances_StartPeriod extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -36,35 +36,9 @@ class OphCoTherapyapplication_ExceptionalCircumstances_StartPeriod extends BaseA
 		return 'ophcotherapya_exceptional_startperiod';
 	}
 
-	/**
-	 * scope to get all records including those not enabled
-	 *
-	 */
-	public function allScope()
-	{
-		$alias = $this->getTableAlias(false);
-
-		$this->resetScope()->getDbCriteria()->mergeWith(array(
-				'order' => $alias.'.display_order ASC',
-				'alias' => $alias
-			));
-		return $this;
-	}
-
-	/**
-	 * only return enabled periods
-	 *
-	 * (non-PHPdoc)
-	 * @see CActiveRecord::defaultScope()
-	 */
 	public function defaultScope()
 	{
-		$alias = $this->getTableAlias(false, false);
-
-		return array(
-			'order' => $alias . '.display_order ASC',
-			'condition' => $alias . '.enabled = true'
-		);
+		return array('order' => $this->getTableAlias(true, false) . '.display_order');
 	}
 
 	/**
@@ -81,4 +55,10 @@ class OphCoTherapyapplication_ExceptionalCircumstances_StartPeriod extends BaseA
 		);
 	}
 
+	public function behaviors()
+	{
+		return array(
+			'LookupTable' => 'LookupTable',
+		);
+	}
 }

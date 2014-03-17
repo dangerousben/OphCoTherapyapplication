@@ -114,7 +114,7 @@ $ccg = $patient->getCommissioningBodyOfType($cbody_type);
 
 <table nobr="true" class="urgency" cellpadding="5">
 <?php
-	foreach (OphCoTherapyapplication_ExceptionalCircumstances_StartPeriod::model()->notDeletedOrPk($exceptional->{$side.'_start_period_id'})->findAll() as $period) {
+	foreach (OphCoTherapyapplication_ExceptionalCircumstances_StartPeriod::model()->active()->findAll() as $period) {
 ?>
 	<tr>
 		<td class="label">&nbsp;<?php echo $period->application_description ?></td>

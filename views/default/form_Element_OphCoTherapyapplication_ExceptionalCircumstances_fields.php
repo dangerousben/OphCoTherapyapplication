@@ -98,7 +98,7 @@
 		$opts = array(
 			'options' => array()
 		);
-		$interventions = OphCoTherapyapplication_ExceptionalCircumstances_Intervention::model()->notDeletedOrPk($element->{$side.'_intervention_id'})->findAll(array('order'=>'display_order'));
+		$interventions = OphCoTherapyapplication_ExceptionalCircumstances_Intervention::model()->findAll();
 
 		foreach ($interventions as $intervention) {
 			$opts['options'][$intervention->id] = array('data-description-label' => $intervention->description_label, 'data-is-deviation' => $intervention->is_deviation);
@@ -281,7 +281,7 @@ $html_options = array(
 	'div_id' =>  get_class($element) . '_' . $side . '_filecollections',
 	'div_class' => 'elementField',
 	'label' => 'File Attachments');
-$collections = OphCoTherapyapplication_FileCollection::model()->notDeletedOrPk($element->getFileCollectionValuesForSide($side))->findAll();
+$collections = OphCoTherapyapplication_FileCollection::model()->activeOrPk($element->getFileCollectionValuesForSide($side))->findAll();
 //TODO: have sorting with display_order when implemented
 /*
 $collections = OphCoTherapyapplication_FileCollection::::model()->findAll(array('order'=>'display_order asc'));

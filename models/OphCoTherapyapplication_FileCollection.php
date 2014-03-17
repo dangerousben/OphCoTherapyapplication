@@ -31,7 +31,7 @@
  *
  **/
 
-class OphCoTherapyapplication_FileCollection extends BaseActiveRecordVersionedSoftDelete
+class OphCoTherapyapplication_FileCollection extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -101,6 +101,13 @@ class OphCoTherapyapplication_FileCollection extends BaseActiveRecordVersionedSo
 				// The following rule is used by search().
 				// Please remove those attributes that should not be searched.
 				array('id, summary, name', 'safe', 'on' => 'search'),
+		);
+	}
+
+	public function behaviors()
+	{
+		return array(
+			'LookupTable' => 'LookupTable',
 		);
 	}
 

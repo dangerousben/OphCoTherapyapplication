@@ -13,7 +13,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 
-class OphCoTherapyapplication_Email_Recipient_Type extends BaseActiveRecordVersionedSoftDelete
+class OphCoTherapyapplication_Email_Recipient_Type extends BaseActiveRecordVersioned
 {
 	public static function model($className = __CLASS__)
 	{

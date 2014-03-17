@@ -17,7 +17,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 
-class OphCoTherapyapplication_ExceptionalCircumstances_StandardIntervention extends BaseActiveRecordVersionedSoftDelete
+class OphCoTherapyapplication_ExceptionalCircumstances_StandardIntervention extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -36,18 +36,29 @@ class OphCoTherapyapplication_ExceptionalCircumstances_StandardIntervention exte
 		return 'ophcotherapya_exceptional_standardintervention';
 	}
 
+	public function defaultScope()
+	{
+		return array('order' => $this->getTableAlias(true, false) . '.display_order');
+	}
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
 	{
 		return array(
-				array('name, enabled, display_order', 'safe'),
+				array('name, display_order', 'safe'),
 				array('name, display_order', 'required'),
 				// The following rule is used by search().
 				// Please remove those attributes that should not be searched.
-				array('id, name, enabled, display_order', 'safe', 'on' => 'search'),
+				array('id, name, display_order', 'safe', 'on' => 'search'),
 		);
 	}
 
+	public function behaviors()
+	{
+		return array(
+			'LookupTable' => 'LookupTable',
+		);
+	}
 }

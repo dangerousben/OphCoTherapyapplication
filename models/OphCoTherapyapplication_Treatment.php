@@ -46,7 +46,7 @@
  * @property User $usermodified
  */
 
-class OphCoTherapyapplication_Treatment extends BaseActiveRecordVersionedSoftDelete
+class OphCoTherapyapplication_Treatment extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -69,14 +69,15 @@ class OphCoTherapyapplication_Treatment extends BaseActiveRecordVersionedSoftDel
 	* scope to only get treatments where the drug is available
 	*
 	*/
-	public function availableScope()
+	public function availableOrPk($id)
 	{
-		$this->resetScope()->getDbCriteria()->mergeWith(array(
-				'with' => array(
-					"drug" => array(
-						'condition' => 'drug.available = true', 'order' => 'drug.display_order ASC'),
-					),
-				'condition' => 'decisiontree_id IS NOT NULL'));
+		$alias = $this->getTableAlias(true);
+
+		$criteria = new CDbCriteria;
+		$criteria->compare('drug.active', true);
+		$criteria->compare("${alias}.active", true);
+		$criteria->addCondition("{$alias}.decisiontree_id is not null");
+		$criteria->compare("${alias}." . $this->metadata->tableSchema->primaryKey, $id, false, 'OR');
 
 		return $this;
 	}
@@ -89,11 +90,7 @@ class OphCoTherapyapplication_Treatment extends BaseActiveRecordVersionedSoftDel
 	 */
 	public function defaultScope()
 	{
-		return array(
-			'with' => array(
-				"drug" => array(
-					'order' => 'drug.display_order ASC'))
-		);
+		return array('with' => array('drug'));
 	}
 
 	/**
@@ -165,28 +162,6 @@ class OphCoTherapyapplication_Treatment extends BaseActiveRecordVersionedSoftDel
 		return new CActiveDataProvider(get_class($this), array(
 				'criteria' => $criteria,
 			));
-	}
-
-	/**
-	 * Set default values for forms on create
-	 */
-	public function setDefaultOptions()
-	{
-	}
-
-	protected function beforeSave()
-	{
-		return parent::beforeSave();
-	}
-
-	protected function afterSave()
-	{
-		return parent::afterSave();
-	}
-
-	protected function beforeValidate()
-	{
-		return parent::beforeValidate();
 	}
 
 	protected function getName()

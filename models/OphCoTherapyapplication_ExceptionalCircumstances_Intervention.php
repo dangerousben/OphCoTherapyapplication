@@ -33,7 +33,7 @@
  * @property User $usermodified
  */
 
-class OphCoTherapyapplication_ExceptionalCircumstances_Intervention extends BaseActiveRecordVersionedSoftDelete
+class OphCoTherapyapplication_ExceptionalCircumstances_Intervention extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -50,6 +50,11 @@ class OphCoTherapyapplication_ExceptionalCircumstances_Intervention extends Base
 	public function tableName()
 	{
 		return 'ophcotherapya_exceptional_intervention';
+	}
+
+	public function defaultScope()
+	{
+		return array('order' => $this->getTableAlias(true, false) . '.display_order');
 	}
 
 	/**
@@ -109,27 +114,5 @@ class OphCoTherapyapplication_ExceptionalCircumstances_Intervention extends Base
 		return new CActiveDataProvider(get_class($this), array(
 				'criteria' => $criteria,
 			));
-	}
-
-	/**
-	 * Set default values for forms on create
-	 */
-	public function setDefaultOptions()
-	{
-	}
-
-	protected function beforeSave()
-	{
-		return parent::beforeSave();
-	}
-
-	protected function afterSave()
-	{
-		return parent::afterSave();
-	}
-
-	protected function beforeValidate()
-	{
-		return parent::beforeValidate();
 	}
 }

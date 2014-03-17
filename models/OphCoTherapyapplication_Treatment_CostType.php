@@ -17,7 +17,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 
-class OphCoTherapyapplication_Treatment_CostType extends BaseActiveRecordVersionedSoftDelete
+class OphCoTherapyapplication_Treatment_CostType extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.

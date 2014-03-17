@@ -160,7 +160,7 @@ class Element_OphCoTherapyapplication_PatientSuitability extends SplitEventTypeE
 	public function getTreatments($side)
 	{
 		if (is_null($this->_available_treatments)) {
-			$this->_available_treatments = OphCoTherapyapplication_Treatment::model()->availableScope()->notDeletedOrPk($this->{$side.'_treatment_id'})->findAll();
+			$this->_available_treatments = OphCoTherapyapplication_Treatment::model()->availableOrPk($this->{$side.'_treatment_id'})->findAll();
 		}
 		$treatments = $this->_available_treatments;
 
